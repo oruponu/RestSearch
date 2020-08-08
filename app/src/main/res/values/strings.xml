@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">RestSearch</string>
+    <string name="request_location_permission">このアプリを使用するには位置情報へのアクセスを許可してください。</string>
 </resources>
