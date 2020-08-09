@@ -1,4 +1,17 @@
 <resources>
     <string name="app_name">RestSearch</string>
     <string name="request_location_permission">このアプリを使用するには位置情報へのアクセスを許可してください。</string>
+
+    <string name="radius_from_current_location">現在地から半径</string>
+    <string name="search_range">の範囲を検索</string>
+    <string name="search_all_genres">全ての料理・ジャンルを検索</string>
+    <string name="narrow_down">絞り込み</string>
+    <string name="search">検索</string>
+    <string-array name="range">
+        <item>300m</item>
+        <item>500m</item>
+        <item>1km</item>
+        <item>2km</item>
+        <item>3km</item>
+    </string-array>
 </resources>
