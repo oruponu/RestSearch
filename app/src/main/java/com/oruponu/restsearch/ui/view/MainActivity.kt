@@ -1,4 +1,4 @@
-package com.oruponu.restsearch
+package com.oruponu.restsearch.ui.view
 
 import android.Manifest.permission.ACCESS_FINE_LOCATION
 import android.os.Bundle
@@ -8,6 +8,7 @@ import androidx.activity.result.contract.ActivityResultContracts.RequestPermissi
 import androidx.activity.result.registerForActivityResult
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
+import com.oruponu.restsearch.R
 
 class MainActivity : BaseActivity() {
     private lateinit var fusedLocationClient: FusedLocationProviderClient

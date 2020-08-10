@@ -1,4 +1,4 @@
-package com.oruponu.restsearch
+package com.oruponu.restsearch.ui.view
 
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
