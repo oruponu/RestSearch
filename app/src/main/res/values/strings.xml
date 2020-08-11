@@ -15,5 +15,10 @@
         <item>3km</item>
     </string-array>
 
+    <string name="error_offline">カテゴリーを取得できません。インターネット接続を確認してください。</string>>
+    <string name="error_server">カテゴリーを取得できません。時間をおいて再度お試しください。</string>
+    <string name="error_fatal">カテゴリーを取得できません。開発者にお問い合わせください。</string>
+    <string name="category_limit">カテゴリーは最大10個まで選択できます。</string>
+    <string name="please_select_category">検索するカテゴリーを選択してください。\nカテゴリーは最大10個まで選択できます。</string>
     <string name="ok">OK</string>
 </resources>
