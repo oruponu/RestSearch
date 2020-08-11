@@ -15,6 +15,9 @@ android {
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        buildConfigField("String", "GNAVI_API_KEY", "\"ecba4251dfb5a7ffd975c7ba918fa800\"")
+        buildConfigField("String", "GNAVI_API_URL", "\"https://api.gnavi.co.jp/\"")
     }
 
     buildFeatures {
