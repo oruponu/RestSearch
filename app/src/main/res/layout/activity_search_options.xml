@@ -13,13 +13,20 @@
             android:padding="16dp"
             tools:context=".ui.view.SearchOptionsActivity">
 
+            <TextView
+                android:id="@+id/selectCategoryTextView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="@string/please_select_category" />
+
             <com.google.android.flexbox.FlexboxLayout
                 android:id="@+id/flexboxLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
                 app:flexWrap="wrap"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintStart_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/selectCategoryTextView" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/okButton"

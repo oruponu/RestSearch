@@ -79,10 +79,11 @@
                     android:id="@+id/filterButton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="19dp"
+                    android:layout_marginTop="21dp"
                     android:text="@string/narrow_down"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/notSelectedTextView" />
+                    app:layout_constraintTop_toBottomOf="@+id/notSelectedTextView"
+                    app:layout_goneMarginTop="0dp" />
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/searchButton"
