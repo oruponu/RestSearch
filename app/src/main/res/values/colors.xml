@@ -3,4 +3,9 @@
     <color name="colorPrimary">#6200EE</color>
     <color name="colorPrimaryDark">#3700B3</color>
     <color name="colorAccent">#03DAC5</color>
+
+    <color name="chipTextDefault">#7E7E7E</color>
+    <color name="chipTextChecked">#009B4E</color>
+    <color name="chipBackgroundDefault">#EFEFEF</color>
+    <color name="chipBackgroundChecked">#E5F5E4</color>
 </resources>
