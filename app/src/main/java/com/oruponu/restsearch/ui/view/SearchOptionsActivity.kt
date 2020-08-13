@@ -18,11 +18,11 @@ import kotlinx.android.synthetic.main.activity_search_options.*
 
 class SearchOptionsActivity : BaseActivity() {
     companion object {
-        private const val SELECTED_CATEGORIES = "selected_categories"
+        private const val SELECTED_CATEGORIES_EXTRA = "selected_categories"
 
         fun intent(context: Context, selectedCategories: HashMap<String, String>): Intent =
             Intent(context, SearchOptionsActivity::class.java).putExtra(
-                SELECTED_CATEGORIES,
+                SELECTED_CATEGORIES_EXTRA,
                 selectedCategories
             )
     }
@@ -37,7 +37,7 @@ class SearchOptionsActivity : BaseActivity() {
 
         @Suppress("UNCHECKED_CAST")
         viewModel.selectedCategories =
-            intent.getSerializableExtra(SELECTED_CATEGORIES) as HashMap<String, String>
+            intent.getSerializableExtra(SELECTED_CATEGORIES_EXTRA) as HashMap<String, String>
 
         binding = DataBindingUtil.setContentView(this, R.layout.activity_search_options)
 
