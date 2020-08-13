@@ -1,6 +1,7 @@
 package com.oruponu.restsearch.data.model.rest
 
 import com.squareup.moshi.Json
+import java.io.Serializable
 
 data class Rest(
     val access: Access,
@@ -39,4 +40,4 @@ data class Rest(
     val url: String,
     @Json(name = "url_mobile")
     val urlMobile: String
-)
+) : Serializable

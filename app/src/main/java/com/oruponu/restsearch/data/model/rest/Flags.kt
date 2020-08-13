@@ -1,6 +1,7 @@
 package com.oruponu.restsearch.data.model.rest
 
 import com.squareup.moshi.Json
+import java.io.Serializable
 
 data class Flags(
     @Json(name = "mobile_coupon")
@@ -9,4 +10,4 @@ data class Flags(
     val mobileSite: Int,
     @Json(name = "pc_coupon")
     val pcCoupon: Int
-)
+) : Serializable

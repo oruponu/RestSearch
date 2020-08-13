@@ -1,6 +1,7 @@
 package com.oruponu.restsearch.data.model.rest
 
 import com.squareup.moshi.Json
+import java.io.Serializable
 
 data class Access(
     val line: String,
@@ -9,4 +10,4 @@ data class Access(
     @Json(name = "station_exit")
     val stationExit: String,
     val walk: String
-)
+) : Serializable

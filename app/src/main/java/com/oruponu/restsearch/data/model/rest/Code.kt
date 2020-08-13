@@ -1,6 +1,7 @@
 package com.oruponu.restsearch.data.model.rest
 
 import com.squareup.moshi.Json
+import java.io.Serializable
 
 data class Code(
     val areacode: String,
@@ -19,4 +20,4 @@ data class Code(
     val categoryNameS: List<String>,
     val prefcode: String,
     val prefname: String
-)
+) : Serializable
