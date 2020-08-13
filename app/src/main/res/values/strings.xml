@@ -1,6 +1,10 @@
 <resources>
     <string name="app_name">RestSearch</string>
     <string name="request_location_permission">このアプリを使用するには位置情報へのアクセスを許可してください。</string>
+    <string name="error_search_not_found">指定された条件に合うお店が見つかりませんでした。</string>
+    <string name="error_search_offline">お店を検索できません。インターネット接続を確認してください。</string>
+    <string name="error_search_server">お店を検索できません。時間をおいて再度お試しください。</string>
+    <string name="error_search_fatal">問題が発生したためお店を検索できません。開発者にお問い合わせください。</string>
 
     <string name="radius_from_current_location">現在地から半径</string>
     <string name="search_range">の範囲を検索</string>

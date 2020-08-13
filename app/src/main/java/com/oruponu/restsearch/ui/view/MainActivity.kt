@@ -11,6 +11,7 @@ import androidx.activity.result.contract.ActivityResultContracts.RequestPermissi
 import androidx.activity.result.registerForActivityResult
 import androidx.activity.viewModels
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.Observer
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import com.oruponu.restsearch.R
@@ -40,6 +41,16 @@ class MainActivity : BaseActivity() {
 
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
 
+        viewModel.stringId.observe(this, Observer {
+            it.getContentIfNotHandled()?.let { stringId ->
+                showSnackbar(
+                    findViewById(android.R.id.content),
+                    stringId,
+                    android.R.string.ok,
+                    View.OnClickListener { return@OnClickListener })
+            }
+        })
+
         filterButton.setOnClickListener {
             val launcher =
                 registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
@@ -53,6 +64,13 @@ class MainActivity : BaseActivity() {
 
             val intent = SearchOptionsActivity.intent(this, viewModel.selectedCategories)
             launcher.launch(intent)
+        }
+
+        searchButton.setOnClickListener {
+            viewModel.search(spinner.selectedItemId + 1)
+            viewModel.dataRest.observe(this, Observer {
+                android.util.Log.d("", it.toString())
+            })
         }
 
         setSearchCategory()
