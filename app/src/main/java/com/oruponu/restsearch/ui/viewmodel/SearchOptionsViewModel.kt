@@ -25,20 +25,20 @@ class SearchOptionsViewModel : ViewModel() {
             } catch (e: Exception) {
                 when (e) {
                     is java.net.UnknownHostException -> {
-                        stringId.postValue(Event(R.string.error_offline))
+                        stringId.postValue(Event(R.string.error_category_offline))
                     }
                     is retrofit2.HttpException -> {
                         when (e.code()) {
-                            500 and 503 -> {
-                                stringId.postValue(Event(R.string.error_server))
+                            429 and 500 and 503 -> {
+                                stringId.postValue(Event(R.string.error_category_server))
                             }
                             else -> {
-                                stringId.postValue(Event(R.string.error_fatal))
+                                stringId.postValue(Event(R.string.error_category_fatal))
                             }
                         }
                     }
                     else -> {
-                        stringId.postValue(Event(R.string.error_fatal))
+                        stringId.postValue(Event(R.string.error_category_fatal))
                     }
                 }
             }
