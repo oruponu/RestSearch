@@ -26,7 +26,8 @@ class ResultActivity : BaseActivity() {
             )
         listView.adapter = listAdapter
         listView.setOnItemClickListener { _, _, position, _ ->
-            //
+            val intent = DetailActivity.intent(this, listAdapter.getItem(position)!!)
+            startActivity(intent)
         }
 
         @Suppress("UNCHECKED_CAST")

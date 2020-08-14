@@ -21,6 +21,7 @@
         </activity>
         <activity android:name=".ui.view.SearchOptionsActivity" />
         <activity android:name=".ui.view.ResultActivity" />
+        <activity android:name=".ui.view.DetailActivity" />
     </application>
 
 </manifest>
