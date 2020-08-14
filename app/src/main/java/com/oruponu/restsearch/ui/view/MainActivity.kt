@@ -15,6 +15,7 @@ import androidx.lifecycle.Observer
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import com.oruponu.restsearch.R
+import com.oruponu.restsearch.data.model.rest.Rest
 import com.oruponu.restsearch.databinding.ActivityMainBinding
 import com.oruponu.restsearch.databinding.CategoryMainBinding
 import com.oruponu.restsearch.ui.viewmodel.MainViewModel
@@ -40,6 +41,11 @@ class MainActivity : BaseActivity() {
         setContentView(R.layout.activity_main)
 
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
+
+        viewModel.dataRest.observe(this, Observer {
+            val intent = ResultActivity.intent(this, it.rest as ArrayList<Rest>)
+            startActivity(intent)
+        })
 
         viewModel.stringId.observe(this, Observer {
             it.getContentIfNotHandled()?.let { stringId ->
@@ -68,9 +74,6 @@ class MainActivity : BaseActivity() {
 
         searchButton.setOnClickListener {
             viewModel.search(spinner.selectedItemId + 1)
-            viewModel.dataRest.observe(this, Observer {
-                android.util.Log.d("", it.toString())
-            })
         }
 
         setSearchCategory()
