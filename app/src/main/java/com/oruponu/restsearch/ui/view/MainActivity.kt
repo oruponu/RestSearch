@@ -21,7 +21,12 @@ import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : BaseActivity() {
     private lateinit var fusedLocationClient: FusedLocationProviderClient
+
     private lateinit var binding: ActivityMainBinding
+
+    private val viewModel: MainViewModel by viewModels()
+
+    private val progressFragment = ProgressFragment()
 
     private val requestLocationPermission: ActivityResultLauncher<Unit> =
         registerForActivityResult(RequestPermission(), ACCESS_FINE_LOCATION) {
@@ -31,8 +36,6 @@ class MainActivity : BaseActivity() {
                 showLocationPermissionMessage()
             }
         }
-
-    private val viewModel: MainViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -71,16 +74,13 @@ class MainActivity : BaseActivity() {
 
     private fun registerObserver() {
         viewModel.dataRest.observe(this, Observer {
-            searchButton.isClickable = true
-            progressBar.visibility = View.GONE
+            progressFragment.dismiss()
             val intent = ResultActivity.intent(this, it.rest as ArrayList<Rest>)
             startActivity(intent)
         })
 
         viewModel.stringId.observe(this, Observer {
-            filterButton.isClickable = true
-            searchButton.isClickable = true
-            progressBar.visibility = View.GONE
+            progressFragment.dismiss()
             it.getContentIfNotHandled()?.let { stringId ->
                 showSnackbar(
                     findViewById(android.R.id.content),
@@ -110,9 +110,7 @@ class MainActivity : BaseActivity() {
         }
 
         searchButton.setOnClickListener {
-            filterButton.isClickable = false
-            searchButton.isClickable = false
-            progressBar.visibility = View.VISIBLE
+            progressFragment.show(supportFragmentManager, "progress")
             viewModel.search(spinner.selectedItemId + 1)
         }
     }

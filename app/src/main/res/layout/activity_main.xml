@@ -9,103 +9,88 @@
             type="com.oruponu.restsearch.ui.viewmodel.MainViewModel" />
     </data>
 
-    <FrameLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:context=".ui.view.MainActivity">
+        android:layout_height="match_parent">
 
-        <ProgressBar
-            android:id="@+id/progressBar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:elevation="3dp"
-            android:visibility="gone"
-            tools:visibility="visible"/>
-
-        <ScrollView
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content"
+            android:padding="16dp"
+            tools:context=".ui.view.MainActivity">
 
-            <androidx.constraintlayout.widget.ConstraintLayout
+            <TextView
+                android:id="@+id/radiusTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/radius_from_current_location"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/spinner"
+                app:layout_constraintTop_toTopOf="@+id/spinner"
+                app:layout_constraintBottom_toBottomOf="@+id/spinner"
+                app:layout_constraintHorizontal_chainStyle="packed" />
+
+            <Spinner
+                android:id="@+id/spinner"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:entries="@array/range"
+                app:layout_constraintStart_toEndOf="@+id/radiusTextView"
+                app:layout_constraintEnd_toStartOf="@+id/rangeTextView"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/rangeTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/search_range"
+                app:layout_constraintStart_toEndOf="@+id/spinner"
+                app:layout_constraintTop_toTopOf="@+id/spinner"
+                app:layout_constraintBottom_toBottomOf="@+id/spinner" />
+
+            <com.google.android.flexbox.FlexboxLayout
+                android:id="@+id/flexboxLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="16dp"
-                tools:context=".ui.view.MainActivity">
+                android:layout_marginTop="64dp"
+                android:animateLayoutChanges="true"
+                app:flexWrap="wrap"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/radiusTextView"
+                app:category="@{viewModel.selectedCategories}"
+                app:textView="@{notSelectedTextView}" />
 
-                <TextView
-                    android:id="@+id/radiusTextView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/radius_from_current_location"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintEnd_toStartOf="@+id/spinner"
-                    app:layout_constraintTop_toTopOf="@+id/spinner"
-                    app:layout_constraintBottom_toBottomOf="@+id/spinner"
-                    app:layout_constraintHorizontal_chainStyle="packed" />
+            <TextView
+                android:id="@+id/notSelectedTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="32dp"
+                android:text="@string/search_all_genres"
+                android:gravity="center_vertical"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/flexboxLayout" />
 
-                <Spinner
-                    android:id="@+id/spinner"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:entries="@array/range"
-                    app:layout_constraintStart_toEndOf="@+id/radiusTextView"
-                    app:layout_constraintEnd_toStartOf="@+id/rangeTextView"
-                    app:layout_constraintTop_toTopOf="parent" />
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/filterButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="@string/narrow_down"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/notSelectedTextView"
+                app:layout_goneMarginTop="0dp"
+                style="?attr/materialButtonOutlinedStyle" />
 
-                <TextView
-                    android:id="@+id/rangeTextView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/search_range"
-                    app:layout_constraintStart_toEndOf="@+id/spinner"
-                    app:layout_constraintTop_toTopOf="@+id/spinner"
-                    app:layout_constraintBottom_toBottomOf="@+id/spinner" />
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/searchButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="64dp"
+                android:text="@string/search"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/filterButton" />
 
-                <com.google.android.flexbox.FlexboxLayout
-                    android:id="@+id/flexboxLayout"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="64dp"
-                    android:animateLayoutChanges="true"
-                    app:flexWrap="wrap"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/radiusTextView"
-                    app:category="@{viewModel.selectedCategories}"
-                    app:textView="@{notSelectedTextView}" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
-                <TextView
-                    android:id="@+id/notSelectedTextView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/search_all_genres"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/flexboxLayout" />
-
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/filterButton"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="21dp"
-                    android:text="@string/narrow_down"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/notSelectedTextView"
-                    app:layout_goneMarginTop="0dp"
-                    style="?attr/materialButtonOutlinedStyle" />
-
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/searchButton"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="64dp"
-                    android:text="@string/search"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/filterButton" />
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-        </ScrollView>
-
-    </FrameLayout>
+    </ScrollView>
 
 </layout>
