@@ -4,7 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <import type="android.view.View" />
+
         <variable
             name="rest"
             type="com.oruponu.restsearch.data.model.rest.Rest" />
@@ -20,9 +22,9 @@
             android:layout_width="60dp"
             android:layout_height="60dp"
             android:src="@drawable/ic_image_border"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:resultImageSource="@{rest.imageUrl.shopImage1}" />
 
         <TextView
@@ -31,10 +33,10 @@
             android:text="@string/no_image"
             android:textAlignment="center"
             android:textColor="@color/textColorSecondary"
-            app:layout_constraintStart_toStartOf="@+id/shopImageView"
-            app:layout_constraintEnd_toEndOf="@+id/shopImageView"
-            app:layout_constraintTop_toTopOf="@+id/shopImageView"
             app:layout_constraintBottom_toBottomOf="@+id/shopImageView"
+            app:layout_constraintEnd_toEndOf="@+id/shopImageView"
+            app:layout_constraintStart_toStartOf="@+id/shopImageView"
+            app:layout_constraintTop_toTopOf="@+id/shopImageView"
             app:resultImageSource="@{rest.imageUrl.shopImage1}" />
 
         <TextView
@@ -48,10 +50,10 @@
             android:text="@{rest.name}"
             android:textColor="@color/textColor"
             android:textSize="18sp"
-            app:layout_constraintStart_toEndOf="@+id/shopImageView"
-            app:layout_constraintEnd_toStartOf="@+id/chevronRightImageView"
-            app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toTopOf="@id/accessTextView"
+            app:layout_constraintEnd_toStartOf="@+id/chevronRightImageView"
+            app:layout_constraintStart_toEndOf="@+id/shopImageView"
+            app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_chainStyle="packed"
             tools:text="店舗名称" />
 
@@ -64,10 +66,10 @@
             android:lines="1"
             android:textColor="@color/textColor"
             android:textSize="12sp"
-            app:layout_constraintStart_toStartOf="@+id/nameTextView"
-            app:layout_constraintEnd_toStartOf="@+id/chevronRightImageView"
-            app:layout_constraintTop_toBottomOf="@+id/nameTextView"
             app:layout_constraintBottom_toTopOf="@+id/categoryTextView"
+            app:layout_constraintEnd_toStartOf="@+id/chevronRightImageView"
+            app:layout_constraintStart_toStartOf="@+id/nameTextView"
+            app:layout_constraintTop_toBottomOf="@+id/nameTextView"
             app:station="@{rest.access.station}"
             app:stationExit="@{rest.access.stationExit}"
             app:walk="@{rest.access.walk}"
@@ -82,10 +84,10 @@
             android:text="@{rest.category}"
             android:textColor="@color/textColor"
             android:textSize="12sp"
-            app:layout_constraintStart_toStartOf="@+id/nameTextView"
-            app:layout_constraintEnd_toStartOf="@+id/chevronRightImageView"
-            app:layout_constraintTop_toBottomOf="@+id/accessTextView"
             app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/chevronRightImageView"
+            app:layout_constraintStart_toStartOf="@+id/nameTextView"
+            app:layout_constraintTop_toBottomOf="@+id/accessTextView"
             tools:text="フリーワードカテゴリー" />
 
         <ImageView
@@ -93,10 +95,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/ic_chevron_right_24"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent" />
-
+            app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
-
 </layout>

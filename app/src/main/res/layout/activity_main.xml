@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="viewModel"
             type="com.oruponu.restsearch.ui.viewmodel.MainViewModel" />
@@ -24,19 +25,19 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/radius_from_current_location"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/spinner"
-                app:layout_constraintTop_toTopOf="@+id/spinner"
                 app:layout_constraintBottom_toBottomOf="@+id/spinner"
-                app:layout_constraintHorizontal_chainStyle="packed" />
+                app:layout_constraintEnd_toStartOf="@+id/spinner"
+                app:layout_constraintHorizontal_chainStyle="packed"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/spinner" />
 
             <Spinner
                 android:id="@+id/spinner"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:entries="@array/range"
-                app:layout_constraintStart_toEndOf="@+id/radiusTextView"
                 app:layout_constraintEnd_toStartOf="@+id/rangeTextView"
+                app:layout_constraintStart_toEndOf="@+id/radiusTextView"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
@@ -44,9 +45,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/search_range"
+                app:layout_constraintBottom_toBottomOf="@+id/spinner"
                 app:layout_constraintStart_toEndOf="@+id/spinner"
-                app:layout_constraintTop_toTopOf="@+id/spinner"
-                app:layout_constraintBottom_toBottomOf="@+id/spinner" />
+                app:layout_constraintTop_toTopOf="@+id/spinner" />
 
             <com.google.android.flexbox.FlexboxLayout
                 android:id="@+id/flexboxLayout"
@@ -54,31 +55,31 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="64dp"
                 android:animateLayoutChanges="true"
+                app:category="@{viewModel.selectedCategories}"
                 app:flexWrap="wrap"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/radiusTextView"
-                app:category="@{viewModel.selectedCategories}"
                 app:textView="@{notSelectedTextView}" />
 
             <TextView
                 android:id="@+id/notSelectedTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="32dp"
-                android:text="@string/search_all_genres"
                 android:gravity="center_vertical"
+                android:text="@string/search_all_genres"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/flexboxLayout" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/filterButton"
+                style="?attr/materialButtonOutlinedStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:text="@string/narrow_down"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/notSelectedTextView"
-                app:layout_goneMarginTop="0dp"
-                style="?attr/materialButtonOutlinedStyle" />
+                app:layout_goneMarginTop="0dp" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/searchButton"
@@ -88,9 +89,6 @@
                 android:text="@string/search"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/filterButton" />
-
         </androidx.constraintlayout.widget.ConstraintLayout>
-
     </ScrollView>
-
 </layout>

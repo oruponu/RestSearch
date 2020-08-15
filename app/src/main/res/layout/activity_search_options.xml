@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.Android.com/tools">
 
     <data>
+
         <variable
             name="viewModel"
             type="com.oruponu.restsearch.ui.viewmodel.SearchOptionsViewModel" />
@@ -30,10 +31,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
+                app:category="@{viewModel.dataCategory}"
                 app:flexWrap="wrap"
                 app:layout_constraintStart_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/selectCategoryTextView"
-                app:category="@{viewModel.dataCategory}"
                 app:selectedCategory="@{viewModel.selectedCategories}" />
 
             <com.google.android.material.button.MaterialButton
@@ -42,12 +43,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:text="@string/ok"
-                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/flexboxLayout" />
-
         </androidx.constraintlayout.widget.ConstraintLayout>
-
     </ScrollView>
-
 </layout>

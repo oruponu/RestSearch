@@ -12,5 +12,4 @@
         app:closeIconEnabled="true"
         app:ensureMinTouchTargetSize="false"
         tools:text="ダミーアイテム" />
-
 </layout>

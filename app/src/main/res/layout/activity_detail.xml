@@ -4,7 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <import type="android.view.View" />
+
         <variable
             name="rest"
             type="com.oruponu.restsearch.data.model.rest.Rest" />
@@ -36,9 +38,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@{rest.nameKana}"
+                android:textColor="@color/textColorSecondary"
                 android:textSize="14sp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/nameTextView"
+                app:layout_constraintTop_toBottomOf="@+id/nameTextView"
                 tools:text="店舗名称（カタカナ）" />
 
             <com.google.android.flexbox.FlexboxLayout
@@ -46,10 +49,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/nameKanaTextView"
+                app:category="@{rest.code.categoryNameS}"
                 app:flexWrap="wrap"
-                app:category="@{rest.code.categoryNameS}" />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/nameKanaTextView" />
 
             <View
                 android:id="@+id/SeparatorView1"
@@ -58,7 +61,7 @@
                 android:layout_marginTop="12dp"
                 android:background="@android:color/darker_gray"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/categoryFlexboxLayout" />
+                app:layout_constraintTop_toBottomOf="@+id/categoryFlexboxLayout" />
 
             <ImageView
                 android:id="@+id/addressImageView"
@@ -67,7 +70,7 @@
                 android:layout_marginTop="12dp"
                 android:background="@drawable/ic_address_24"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/SeparatorView1" />
+                app:layout_constraintTop_toBottomOf="@+id/SeparatorView1" />
 
             <TextView
                 android:id="@+id/addressTextView"
@@ -77,12 +80,12 @@
                 android:gravity="center_vertical"
                 android:minHeight="24dp"
                 android:textSize="16sp"
-                app:layout_constraintStart_toEndOf="@+id/addressImageView"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/addressImageView"
-                app:layout_constraintVertical_bias="0.2"
                 app:address="@{rest.address}"
                 app:latitude="@{rest.latitude}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/addressImageView"
+                app:layout_constraintTop_toTopOf="@+id/addressImageView"
+                app:layout_constraintVertical_bias="0.2"
                 app:longitude="@{rest.longitude}"
                 tools:text="住所" />
 
@@ -92,7 +95,7 @@
                 android:layout_height="wrap_content"
                 android:background="@drawable/ic_tel_24"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/addressTextView" />
+                app:layout_constraintTop_toBottomOf="@+id/addressTextView" />
 
             <TextView
                 android:id="@+id/telTextView"
@@ -101,8 +104,8 @@
                 android:gravity="center_vertical"
                 android:minHeight="24dp"
                 android:textSize="16sp"
-                app:layout_constraintStart_toStartOf="@+id/addressTextView"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/addressTextView"
                 app:layout_constraintTop_toTopOf="@+id/telImageView"
                 app:tel="@{rest.tel}"
                 tools:text="電話番号" />
@@ -114,7 +117,7 @@
                 android:background="@drawable/ic_opentime_24"
                 android:visibility="@{rest.opentime.isEmpty() ? View.GONE : View.VISIBLE}"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/telTextView" />
+                app:layout_constraintTop_toBottomOf="@+id/telTextView" />
 
             <TextView
                 android:id="@+id/opentimeTextView"
@@ -125,8 +128,8 @@
                 android:text="@{rest.opentime.trim()}"
                 android:textSize="16sp"
                 android:visibility="@{rest.opentime.isEmpty() ? View.GONE : View.VISIBLE}"
-                app:layout_constraintStart_toStartOf="@+id/addressTextView"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/addressTextView"
                 app:layout_constraintTop_toTopOf="@+id/opentimeImageView"
                 tools:text="営業時間" />
 
@@ -137,17 +140,17 @@
                 android:background="@drawable/ic_circle_24"
                 android:visibility="@{rest.holiday.isEmpty() ? View.GONE : View.VISIBLE}"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/opentimeTextView" />
+                app:layout_constraintTop_toBottomOf="@+id/opentimeTextView" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/holiday"
                 android:visibility="@{rest.holiday.isEmpty() ? View.GONE : View.VISIBLE}"
-                app:layout_constraintStart_toStartOf="@id/circleImageView"
+                app:layout_constraintBottom_toBottomOf="@+id/circleImageView"
                 app:layout_constraintEnd_toEndOf="@+id/circleImageView"
-                app:layout_constraintTop_toTopOf="@id/circleImageView"
-                app:layout_constraintBottom_toBottomOf="@+id/circleImageView" />
+                app:layout_constraintStart_toStartOf="@id/circleImageView"
+                app:layout_constraintTop_toTopOf="@+id/circleImageView" />
 
             <TextView
                 android:id="@+id/holidayTextView"
@@ -158,8 +161,8 @@
                 android:text="@{rest.holiday}"
                 android:textSize="16sp"
                 android:visibility="@{rest.holiday.isEmpty() ? View.GONE : View.VISIBLE}"
-                app:layout_constraintStart_toStartOf="@+id/addressTextView"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/addressTextView"
                 app:layout_constraintTop_toTopOf="@+id/circleImageView"
                 tools:text="休業日" />
 
@@ -168,20 +171,20 @@
                 android:layout_width="150dp"
                 android:layout_height="150dp"
                 android:layout_marginTop="12dp"
-                app:layout_constraintStart_toStartOf="parent"
+                app:detailImageSource="@{rest.imageUrl.shopImage1}"
                 app:layout_constraintEnd_toStartOf="@+id/shopImageView2"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/holidayTextView"
-                app:imageSource="@{rest.imageUrl.shopImage1}"
                 tools:background="@android:color/darker_gray" />
 
             <ImageView
                 android:id="@+id/shopImageView2"
                 android:layout_width="150dp"
                 android:layout_height="150dp"
-                app:layout_constraintStart_toEndOf="@+id/shopImageView1"
+                app:detailImageSource="@{rest.imageUrl.shopImage2}"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/shopImageView1"
                 app:layout_constraintTop_toTopOf="@+id/shopImageView1"
-                app:imageSource="@{rest.imageUrl.shopImage2}"
                 tools:background="@android:color/darker_gray" />
 
             <View
@@ -191,7 +194,7 @@
                 android:layout_marginTop="12dp"
                 android:background="@android:color/darker_gray"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/shopImageView1" />
+                app:layout_constraintTop_toBottomOf="@+id/shopImageView1" />
 
             <TextView
                 android:id="@+id/prShortTextView"
@@ -211,10 +214,11 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
                 android:text="@{rest.pr.prLong}"
+                android:textColor="@color/textColorSecondary"
                 android:textSize="14sp"
                 android:visibility="@{rest.pr.prLong.isEmpty() ? View.GONE : View.VISIBLE }"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/prShortTextView"
+                app:layout_constraintTop_toBottomOf="@+id/prShortTextView"
                 tools:text="PR文（長）" />
 
             <com.google.android.material.button.MaterialButton
@@ -222,14 +226,11 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="12dp"
                 android:text="@string/start_navigation"
-                app:layout_constraintTop_toBottomOf="@+id/prLongTextView"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
                 app:latitude="@{rest.latitude}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/prLongTextView"
                 app:longitude="@{rest.longitude}" />
-
         </androidx.constraintlayout.widget.ConstraintLayout>
-
     </ScrollView>
-
 </layout>
