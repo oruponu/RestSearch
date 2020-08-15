@@ -10,36 +10,76 @@
         android:id="@+id/shopImageView"
         android:layout_width="60dp"
         android:layout_height="60dp"
-        android:background="@android:color/darker_gray"
+        android:src="@drawable/ic_image_border"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
+    <TextView
+        android:id="@+id/noImageTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/no_image"
+        android:textAlignment="center"
+        android:textColor="@color/textColorSecondary"
+        app:layout_constraintStart_toStartOf="@+id/shopImageView"
+        app:layout_constraintEnd_toEndOf="@+id/shopImageView"
+        app:layout_constraintTop_toTopOf="@+id/shopImageView"
+        app:layout_constraintBottom_toBottomOf="@+id/shopImageView" />
 
     <TextView
         android:id="@+id/nameTextView"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        app:layout_constraintStart_toEndOf="@id/shopImageView"
+        android:ellipsize="end"
+        android:lineSpacingMultiplier="0.8"
+        android:maxLines="2"
+        android:textColor="@color/textColor"
+        android:textSize="18sp"
+        app:layout_constraintStart_toEndOf="@+id/shopImageView"
+        app:layout_constraintEnd_toStartOf="@+id/chevronRightImageView"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/accessTextView"
+        app:layout_constraintVertical_chainStyle="packed"
         tools:text="店舗名称" />
 
     <TextView
         android:id="@+id/accessTextView"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
+        android:ellipsize="end"
+        android:lines="1"
+        android:textColor="@color/textColor"
         android:textSize="12sp"
-        app:layout_constraintStart_toStartOf="@id/nameTextView"
-        app:layout_constraintTop_toBottomOf="@id/nameTextView"
+        app:layout_constraintStart_toStartOf="@+id/nameTextView"
+        app:layout_constraintEnd_toStartOf="@+id/chevronRightImageView"
+        app:layout_constraintTop_toBottomOf="@+id/nameTextView"
+        app:layout_constraintBottom_toTopOf="@+id/categoryTextView"
         tools:text="アクセス" />
 
     <TextView
         android:id="@+id/categoryTextView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:ellipsize="end"
+        android:lines="1"
+        android:textColor="@color/textColor"
+        android:textSize="12sp"
+        app:layout_constraintStart_toStartOf="@+id/nameTextView"
+        app:layout_constraintEnd_toStartOf="@+id/chevronRightImageView"
+        app:layout_constraintTop_toBottomOf="@+id/accessTextView"
+        app:layout_constraintBottom_toBottomOf="parent"
+        tools:text="フリーワードカテゴリー" />
+
+    <ImageView
+        android:id="@+id/chevronRightImageView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="12sp"
-        app:layout_constraintStart_toStartOf="@id/nameTextView"
-        app:layout_constraintTop_toBottomOf="@id/accessTextView"
-        tools:text="フリーワードカテゴリー" />
+        android:background="@drawable/ic_chevron_right_24"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

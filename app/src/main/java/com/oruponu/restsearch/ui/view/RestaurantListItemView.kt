@@ -3,6 +3,7 @@ package com.oruponu.restsearch.ui.view
 import android.content.Context
 import android.util.AttributeSet
 import android.view.LayoutInflater
+import android.view.View
 import android.widget.FrameLayout
 import com.bumptech.glide.Glide
 import com.oruponu.restsearch.R
@@ -23,8 +24,10 @@ class RestaurantListItemView @JvmOverloads constructor(
         val shopImage1 = restaurant.imageUrl.shopImage1
         if (shopImage1.isNotEmpty()) {
             Glide.with(context).load(shopImage1).into(shopImageView)
+            noImageTextView.visibility = View.GONE
         } else {
-            Glide.with(context).clear(shopImageView)
+            shopImageView.setImageResource(R.drawable.ic_image_border)
+            noImageTextView.visibility = View.VISIBLE
         }
         nameTextView.text = restaurant.name
         if (restaurant.access.station.isNotEmpty()) {

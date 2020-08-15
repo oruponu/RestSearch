@@ -26,6 +26,8 @@
     <string name="please_select_category">検索するカテゴリーを選択してください。\nカテゴリーは最大10個まで選択できます。</string>
     <string name="ok">OK</string>
 
+    <string name="no_image">NO\nIMAGE</string>
+
     <string name="holiday">休</string>
     <string name="start_navigation">ルート案内を開始</string>
 </resources>
