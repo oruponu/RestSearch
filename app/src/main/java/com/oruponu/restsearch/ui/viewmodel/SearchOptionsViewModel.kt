@@ -11,9 +11,10 @@ import kotlinx.coroutines.launch
 
 class SearchOptionsViewModel : ViewModel() {
     val dataCategory = MutableLiveData<CategoryLargeSearch>()
+
     val stringId = MutableLiveData<Event<Int>>()
 
-    var selectedCategories: HashMap<String, String> = hashMapOf()
+    val selectedCategories = MutableLiveData<HashMap<String, String>>()
 
     private val repository = CategoryLargeSearchRepository.getCategory()
 
