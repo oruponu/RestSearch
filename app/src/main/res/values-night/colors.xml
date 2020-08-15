@@ -5,6 +5,7 @@
     <color name="colorAccent">#479F76</color>
 
     <color name="textColor">#E8EAED</color>
+    <color name="textColorSecondary">#9BA0A5</color>
     <color name="chipBackgroundColor">@android:color/transparent</color>
     <color name="chipBackgroundCheckedColor">#173C2D</color>
     <color name="chipStrokeColor">#606367</color>
