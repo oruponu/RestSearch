@@ -12,10 +12,10 @@ import kotlinx.coroutines.launch
 class MainViewModel : ViewModel() {
     val dataRest = MutableLiveData<RestSearch>()
     val stringId = MutableLiveData<Event<Int>>()
+    val selectedCategories = MutableLiveData<HashMap<String, String>>()
 
     var latitude = .0
     var longitude = .0
-    var selectedCategories: HashMap<String, String> = hashMapOf()
 
     private val repository = RestSearchRepository.search()
 
@@ -23,8 +23,9 @@ class MainViewModel : ViewModel() {
         viewModelScope.launch {
             try {
                 var categoriesCode = ""
-                if (selectedCategories.isNotEmpty()) {
-                    categoriesCode = selectedCategories.map { it.key }.joinToString(",")
+                val selectedCategory = selectedCategories.value
+                if (selectedCategory != null && selectedCategory.isNotEmpty()) {
+                    categoriesCode = selectedCategory.map { it.key }.joinToString(",")
                 }
                 val rest = repository.search(
                     BuildConfig.GNAVI_API_KEY,
