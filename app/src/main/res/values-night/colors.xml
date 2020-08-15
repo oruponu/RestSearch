@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#479F76</color>
+    <color name="colorPrimaryDark">#173C2D</color>
+    <color name="colorAccent">#479F76</color>
+
+    <color name="textColor">#E8EAED</color>
+    <color name="chipBackgroundColor">@android:color/transparent</color>
+    <color name="chipBackgroundCheckedColor">#173C2D</color>
+    <color name="chipStrokeColor">#606367</color>
+    <color name="chipTextColor">#9BA0A5</color>
+    <color name="chipTextCheckedColor">#50B084</color>
+
+    <bool name="windowLightStatusBar">false</bool>
+</resources>

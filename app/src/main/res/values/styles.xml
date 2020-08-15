@@ -1,10 +1,23 @@
 <resources>
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.MaterialComponents.Light.DarkActionBar">
+    <style name="AppTheme" parent="Theme.MaterialComponents.DayNight">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:textColor">@color/textColor</item>
+        <item name="android:windowLightStatusBar">@bool/windowLightStatusBar</item>
+
+        <item name="chipStyle">@style/Widget.App.Chip</item>
+    </style>
+
+    <style name="Widget.App.Chip" parent="Widget.MaterialComponents.Chip.Action">
+        <item name="chipBackgroundColor">@color/chipBackgroundColor</item>
+        <item name="chipStrokeColor">@color/chipStrokeColor</item>
+        <item name="chipStrokeWidth">2dp</item>
+        <item name="android:textColor">@color/chipTextColor</item>
     </style>
 
 </resources>

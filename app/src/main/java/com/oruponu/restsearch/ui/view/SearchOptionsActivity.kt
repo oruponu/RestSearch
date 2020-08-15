@@ -79,22 +79,11 @@ class SearchOptionsActivity : BaseActivity() {
 
             categoryItem.chip.text = name
             if (viewModel.selectedCategories.containsKey(code)) {
-                categoryItem.chip.setChipBackgroundColorResource(R.color.chipBackgroundChecked)
-                categoryItem.chip.setTextColor(resources.getColor(R.color.chipTextChecked, null))
-            } else {
-                categoryItem.chip.setChipBackgroundColorResource(R.color.chipBackgroundDefault)
-                categoryItem.chip.setTextColor(resources.getColor(R.color.chipTextDefault, null))
+                categoryItem.chip.isChecked = true
             }
 
             categoryItem.chip.setOnClickListener {
                 if (viewModel.selectedCategories.containsKey(code)) {
-                    categoryItem.chip.setChipBackgroundColorResource(R.color.chipBackgroundDefault)
-                    categoryItem.chip.setTextColor(
-                        resources.getColor(
-                            R.color.chipTextDefault,
-                            null
-                        )
-                    )
                     viewModel.selectedCategories.remove(code)
                 } else {
                     if (viewModel.selectedCategories.size >= 10) {
@@ -104,13 +93,6 @@ class SearchOptionsActivity : BaseActivity() {
                             android.R.string.ok,
                             View.OnClickListener { return@OnClickListener })
                     } else {
-                        categoryItem.chip.setChipBackgroundColorResource(R.color.chipBackgroundChecked)
-                        categoryItem.chip.setTextColor(
-                            resources.getColor(
-                                R.color.chipTextChecked,
-                                null
-                            )
-                        )
                         viewModel.selectedCategories[code] = name
                     }
                 }
