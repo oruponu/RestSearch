@@ -9,63 +9,52 @@ import com.oruponu.restsearch.data.model.rest.RestSearch
 import com.oruponu.restsearch.data.repository.RestSearchRepository
 import kotlinx.coroutines.launch
 
-class MainViewModel : ViewModel() {
+class RestaurantListViewModel : ViewModel() {
     val dataRestSearch = MutableLiveData<RestSearch>()
 
     val stringId = MutableLiveData<Event<Int>>()
 
-    val selectedCategories = MutableLiveData<HashMap<String, String>>()
-
-    var latitude = .0
-    var longitude = .0
-
     private val repository = RestSearchRepository.search()
 
-    fun search(range: Int) {
+    fun search(
+        categoriesCode: String,
+        latitude: Double,
+        longitude: Double,
+        range: Int,
+        offsetPage: Int
+    ) {
         viewModelScope.launch {
             try {
                 val rest = repository.search(
                     BuildConfig.GNAVI_API_KEY,
-                    getCategoriesCode(),
+                    categoriesCode,
                     latitude,
                     longitude,
                     range,
                     100,
-                    1
+                    offsetPage
                 )
                 dataRestSearch.postValue(rest)
             } catch (e: Exception) {
                 when (e) {
                     is java.net.UnknownHostException -> {
-                        stringId.postValue(Event(R.string.error_search_offline))
+                        stringId.postValue(Event(R.string.error_restaurant_offline))
                     }
                     is retrofit2.HttpException -> {
                         when (e.code()) {
-                            404 -> {
-                                stringId.postValue(Event(R.string.error_search_not_found))
-                            }
                             429 and 500 and 503 -> {
-                                stringId.postValue(Event(R.string.error_search_server))
+                                stringId.postValue(Event(R.string.error_restaurant_server))
                             }
                             else -> {
-                                stringId.postValue(Event(R.string.error_search_fatal))
+                                stringId.postValue(Event(R.string.error_restaurant_fatal))
                             }
                         }
                     }
                     else -> {
-                        stringId.postValue(Event(R.string.error_search_fatal))
+                        stringId.postValue(Event(R.string.error_restaurant_fatal))
                     }
                 }
             }
         }
-    }
-
-    fun getCategoriesCode(): String {
-        var categoriesCode = ""
-        val selectedCategory = selectedCategories.value
-        if (selectedCategory != null && selectedCategory.isNotEmpty()) {
-            categoriesCode = selectedCategory.map { it.key }.joinToString(",")
-        }
-        return categoriesCode
     }
 }

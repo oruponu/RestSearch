@@ -1,11 +1,26 @@
 <resources>
     <string name="app_name">RestSearch</string>
+
+    <!-- システム -->
+    <string name="ok">OK</string>
+
     <string name="request_location_permission">このアプリを使用するには位置情報へのアクセスを許可してください。</string>
     <string name="error_search_not_found">指定された条件に合うお店が見つかりませんでした。</string>
     <string name="error_search_offline">お店を検索できません。インターネット接続を確認してください。</string>
     <string name="error_search_server">お店を検索できません。時間をおいて再度お試しください。</string>
     <string name="error_search_fatal">問題が発生したためお店を検索できません。開発者にお問い合わせください。</string>
 
+    <string name="error_category_offline">カテゴリーを取得できません。インターネット接続を確認してください。</string>>
+    <string name="error_category_server">カテゴリーを取得できません。時間をおいて再度お試しください。</string>
+    <string name="error_category_fatal">問題が発生したためカテゴリーを取得できません。開発者にお問い合わせください。</string>
+    <string name="category_limit">カテゴリーは最大10個まで選択できます。</string>
+    <string name="please_select_category">検索するカテゴリーを選択してください。\nカテゴリーは最大10個まで選択できます。</string>
+
+    <string name="error_restaurant_offline">データを取得できません。インターネット接続を確認してください。</string>
+    <string name="error_restaurant_server">データを取得できません。時間をおいて再度お試しください。</string>
+    <string name="error_restaurant_fatal">問題が発生したためデータを取得できません。開発者にお問い合わせください。</string>
+
+    <!-- activity_main -->
     <string name="radius_from_current_location">現在地から半径</string>
     <string name="search_range">の範囲を検索</string>
     <string name="search_all_genres">全ての料理・ジャンルを検索</string>
@@ -19,15 +34,10 @@
         <item>3km</item>
     </string-array>
 
-    <string name="error_category_offline">カテゴリーを取得できません。インターネット接続を確認してください。</string>>
-    <string name="error_category_server">カテゴリーを取得できません。時間をおいて再度お試しください。</string>
-    <string name="error_category_fatal">問題が発生したためカテゴリーを取得できません。開発者にお問い合わせください。</string>
-    <string name="category_limit">カテゴリーは最大10個まで選択できます。</string>
-    <string name="please_select_category">検索するカテゴリーを選択してください。\nカテゴリーは最大10個まで選択できます。</string>
-    <string name="ok">OK</string>
-
+    <!-- activity_result -->
     <string name="no_image">NO\nIMAGE</string>
 
+    <!-- activity_detail -->
     <string name="holiday">休</string>
     <string name="start_navigation">ルート案内を開始</string>
 </resources>

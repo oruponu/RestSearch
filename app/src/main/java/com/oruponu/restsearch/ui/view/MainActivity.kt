@@ -14,8 +14,8 @@ import androidx.lifecycle.Observer
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import com.oruponu.restsearch.R
-import com.oruponu.restsearch.data.model.rest.Rest
 import com.oruponu.restsearch.databinding.ActivityMainBinding
+import com.oruponu.restsearch.extensions.countTotalPage
 import com.oruponu.restsearch.ui.viewmodel.MainViewModel
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -73,9 +73,9 @@ class MainActivity : BaseActivity() {
         View.OnClickListener { requestLocationPermission.launch(Unit) })
 
     private fun registerObserver() {
-        viewModel.dataRest.observe(this, Observer {
+        viewModel.dataRestSearch.observe(this, Observer {
             progressFragment.dismiss()
-            val intent = ResultActivity.intent(this, it.rest as ArrayList<Rest>)
+            val intent = ResultActivity.intent(this, it.countTotalPage(), viewModel.getCategoriesCode(), viewModel.latitude, viewModel.longitude, (spinner.selectedItemId + 1).toInt())
             startActivity(intent)
         })
 
@@ -111,7 +111,7 @@ class MainActivity : BaseActivity() {
 
         searchButton.setOnClickListener {
             progressFragment.show(supportFragmentManager, "progress")
-            viewModel.search(spinner.selectedItemId + 1)
+            viewModel.search((spinner.selectedItemId + 1).toInt())
         }
     }
 }
