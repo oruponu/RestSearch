@@ -12,7 +12,7 @@ class ResultPagerAdapter(
     private val longitude: Double,
     private val range: Int
 ) : FragmentStateAdapter(fragment) {
-    override fun createFragment(position: Int) = RestaurantListFragment.createInstance(
+    override fun createFragment(position: Int) = RestaurantListFragment.newInstance(
         position,
         categoriesCode,
         latitude,

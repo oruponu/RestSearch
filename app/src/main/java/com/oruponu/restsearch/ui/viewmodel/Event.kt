@@ -1,7 +1,7 @@
 package com.oruponu.restsearch.ui.viewmodel
 
 open class Event<out T>(private val content: T) {
-    var hasBeenHandled = false
+    private var hasBeenHandled = false
 
     fun getContentIfNotHandled(): T? {
         return if (hasBeenHandled) {
@@ -11,6 +11,4 @@ open class Event<out T>(private val content: T) {
             content
         }
     }
-
-    fun peekContent(): T = content
 }

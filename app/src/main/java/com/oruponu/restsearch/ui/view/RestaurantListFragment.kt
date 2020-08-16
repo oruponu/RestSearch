@@ -14,7 +14,7 @@ import kotlinx.android.synthetic.main.fragment_restaurant_list.*
 
 class RestaurantListFragment : Fragment() {
     companion object {
-        fun createInstance(
+        fun newInstance(
             position: Int,
             categoriesCode: String,
             latitude: Double,
