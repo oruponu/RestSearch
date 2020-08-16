@@ -11,7 +11,8 @@ interface RestSearchApi {
         @Query("category_l", encoded = true) categoryL: String,
         @Query("latitude") latitude: Double,
         @Query("longitude") longitude: Double,
-        @Query("range") range: Long,
-        @Query("hit_per_page") hitPerPage: Int
+        @Query("range") range: Int,
+        @Query("hit_per_page") hitPerPage: Int,
+        @Query("offset_page") offsetPage: Int
     ): RestSearch
 }
