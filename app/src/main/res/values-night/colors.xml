@@ -11,6 +11,8 @@
     <color name="chipStrokeColor">#606367</color>
     <color name="chipTextColor">#9BA0A5</color>
     <color name="chipTextCheckedColor">#50B084</color>
+    <color name="tabLayoutBackground">#1E1E1E</color>
+    <color name="tabSelectedTextColor">#202124</color>
 
     <bool name="windowLightStatusBar">false</bool>
 </resources>
