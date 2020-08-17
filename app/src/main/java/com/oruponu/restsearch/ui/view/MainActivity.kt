@@ -61,6 +61,7 @@ class MainActivity : BaseActivity(), OnMapReadyCallback {
 
         registerObserver()
         setOnClickListener()
+        setSearchCategory()
     }
 
     override fun onMapReady(googleMap: GoogleMap) {
