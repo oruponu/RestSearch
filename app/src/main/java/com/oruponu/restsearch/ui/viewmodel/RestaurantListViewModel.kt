@@ -42,7 +42,7 @@ class RestaurantListViewModel : ViewModel() {
                     }
                     is retrofit2.HttpException -> {
                         when (e.code()) {
-                            429 and 500 and 503 -> {
+                            429, 500, 503 -> {
                                 stringId.postValue(Event(R.string.error_restaurant_server))
                             }
                             else -> {

@@ -44,7 +44,7 @@ class MainViewModel : ViewModel() {
                             404 -> {
                                 stringId.postValue(Event(R.string.error_search_not_found))
                             }
-                            429 and 500 and 503 -> {
+                            429, 500, 503 -> {
                                 stringId.postValue(Event(R.string.error_search_server))
                             }
                             else -> {
