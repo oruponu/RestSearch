@@ -6,6 +6,7 @@ import android.widget.TextView
 import androidx.databinding.BindingAdapter
 import com.bumptech.glide.Glide
 import com.oruponu.restsearch.R
+import com.oruponu.restsearch.data.model.rest.Access
 
 @BindingAdapter("resultImageSource")
 fun loadResultImage(view: ImageView, uri: String) {
@@ -25,9 +26,7 @@ fun setNoImageTextViewVisibility(view: TextView, uri: String) {
     }
 }
 
-@BindingAdapter("station", "stationExit", "walk")
-fun setAccessText(view: TextView, station: String, stationExit: String, walk: String) {
-    if (station.isNotEmpty()) {
-        view.text = "$station$stationExit $walk" + "分"
-    }
+@BindingAdapter("access")
+fun setAccessText(view: TextView, access: Access) {
+    view.text = access.getAccess()
 }

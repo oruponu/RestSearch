@@ -16,9 +16,8 @@ fun setCategoryChip(
     categoryLargeSearch: CategoryLargeSearch?,
     selectedCategories: HashMap<String, String>?
 ) {
-    if (categoryLargeSearch == null || selectedCategories == null) {
-        return
-    }
+    categoryLargeSearch ?: return
+    selectedCategories ?: return
     flexboxLayout.removeAllViews()
     categoryLargeSearch.categoryL.forEach { categoryL ->
         val name = categoryL.categoryLName

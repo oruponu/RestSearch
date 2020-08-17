@@ -66,13 +66,11 @@
             android:lines="1"
             android:textColor="@color/textColor"
             android:textSize="12sp"
+            app:access="@{rest.access}"
             app:layout_constraintBottom_toTopOf="@+id/categoryTextView"
             app:layout_constraintEnd_toStartOf="@+id/chevronRightImageView"
             app:layout_constraintStart_toStartOf="@+id/nameTextView"
             app:layout_constraintTop_toBottomOf="@+id/nameTextView"
-            app:station="@{rest.access.station}"
-            app:stationExit="@{rest.access.stationExit}"
-            app:walk="@{rest.access.walk}"
             tools:text="アクセス" />
 
         <TextView
