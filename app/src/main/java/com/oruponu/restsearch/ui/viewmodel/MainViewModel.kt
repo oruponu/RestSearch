@@ -3,6 +3,7 @@ package com.oruponu.restsearch.ui.viewmodel
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.google.android.gms.maps.GoogleMap
 import com.oruponu.restsearch.BuildConfig
 import com.oruponu.restsearch.R
 import com.oruponu.restsearch.data.model.rest.RestSearch
@@ -13,6 +14,8 @@ class MainViewModel : ViewModel() {
     val dataRestSearch = MutableLiveData<RestSearch>()
 
     val stringId = MutableLiveData<Event<Int>>()
+
+    lateinit var googleMap: GoogleMap
 
     var latitude = .0
     var longitude = .0

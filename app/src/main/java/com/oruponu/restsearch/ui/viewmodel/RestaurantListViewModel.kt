@@ -23,6 +23,9 @@ class RestaurantListViewModel : ViewModel() {
         range: Int,
         offsetPage: Int
     ) {
+        if (dataRestSearch.value != null) {
+            return
+        }
         viewModelScope.launch {
             try {
                 val rest = repository.search(

@@ -33,8 +33,6 @@ import kotlinx.android.synthetic.main.activity_main.*
 class MainActivity : BaseActivity(), OnMapReadyCallback {
     private lateinit var fusedLocationClient: FusedLocationProviderClient
 
-    private lateinit var googleMap: GoogleMap
-
     private val viewModel: MainViewModel by viewModels()
 
     private val progressFragment = ProgressFragment()
@@ -67,7 +65,8 @@ class MainActivity : BaseActivity(), OnMapReadyCallback {
         googleMap.setMapStyle(MapStyleOptions.loadRawResourceStyle(this, R.raw.map_style_json))
         googleMap.uiSettings.isZoomControlsEnabled = true
         googleMap.isMyLocationEnabled = true
-        this.googleMap = googleMap
+        viewModel.googleMap = googleMap
+        setMapCircle(spinner.selectedItemPosition)
     }
 
     private fun getLastLocation() {
@@ -121,29 +120,7 @@ class MainActivity : BaseActivity(), OnMapReadyCallback {
                 view: View?,
                 position: Int,
                 id: Long
-            ) {
-                val latLng = LatLng(viewModel.latitude, viewModel.longitude)
-                val rangeString = spinner.getItemAtPosition(position).toString()
-                var range = 0.0
-                if (rangeString.endsWith("km")) {
-                    range = rangeString.replace("km", "").toDouble() * 1000
-                } else if (rangeString.endsWith("m")) {
-                    range = rangeString.replace("m", "").toDouble()
-                }
-                val bounds = latLng.toBounds(range)
-
-                googleMap.clear()
-                googleMap.addCircle(
-                    CircleOptions().center(latLng).radius(range).strokeColor(
-                        ContextCompat.getColor(
-                            spinner.context,
-                            R.color.mapCircleColor
-                        )
-                    )
-                        .fillColor(ContextCompat.getColor(spinner.context, R.color.mapCircleColor))
-                )
-                googleMap.animateCamera(CameraUpdateFactory.newLatLngBounds(bounds, 32))
-            }
+            ) = setMapCircle(position)
 
             override fun onNothingSelected(parent: AdapterView<*>?) {}
         }
@@ -167,6 +144,33 @@ class MainActivity : BaseActivity(), OnMapReadyCallback {
             progressFragment.show(supportFragmentManager, "progress")
             viewModel.search((spinner.selectedItemId + 1).toInt())
         }
+    }
+
+    private fun setMapCircle(spinnerSelectedItemId: Int) {
+        if (viewModel.latitude == 0.0 && viewModel.longitude == 0.0) {
+            return
+        }
+        val latLng = LatLng(viewModel.latitude, viewModel.longitude)
+        val rangeString = spinner.getItemAtPosition(spinnerSelectedItemId).toString()
+        var range = 0.0
+        if (rangeString.endsWith("km")) {
+            range = rangeString.replace("km", "").toDouble() * 1000
+        } else if (rangeString.endsWith("m")) {
+            range = rangeString.replace("m", "").toDouble()
+        }
+        val bounds = latLng.toBounds(range)
+
+        viewModel.googleMap.clear()
+        viewModel.googleMap.addCircle(
+            CircleOptions().center(latLng).radius(range).strokeColor(
+                ContextCompat.getColor(
+                    spinner.context,
+                    R.color.mapCircleColor
+                )
+            )
+                .fillColor(ContextCompat.getColor(spinner.context, R.color.mapCircleColor))
+        )
+        viewModel.googleMap.animateCamera(CameraUpdateFactory.newLatLngBounds(bounds, 32))
     }
 
     private fun setSearchCategory() {
