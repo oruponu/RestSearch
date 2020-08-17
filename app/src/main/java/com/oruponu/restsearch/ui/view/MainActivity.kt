@@ -1,6 +1,7 @@
 package com.oruponu.restsearch.ui.view
 
 import android.Manifest.permission.ACCESS_FINE_LOCATION
+import android.annotation.SuppressLint
 import android.app.Activity
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -14,7 +15,9 @@ import androidx.activity.viewModels
 import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
-import com.google.android.gms.location.FusedLocationProviderClient
+import com.google.android.gms.location.LocationCallback
+import com.google.android.gms.location.LocationRequest
+import com.google.android.gms.location.LocationResult
 import com.google.android.gms.location.LocationServices
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
@@ -31,8 +34,6 @@ import com.oruponu.restsearch.ui.viewmodel.MainViewModel
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : BaseActivity(), OnMapReadyCallback {
-    private lateinit var fusedLocationClient: FusedLocationProviderClient
-
     private val viewModel: MainViewModel by viewModels()
 
     private val progressFragment = ProgressFragment()
@@ -40,7 +41,7 @@ class MainActivity : BaseActivity(), OnMapReadyCallback {
     private val requestLocationPermission: ActivityResultLauncher<Unit> =
         registerForActivityResult(RequestPermission(), ACCESS_FINE_LOCATION) {
             if (it) {
-                getLastLocation()
+                startLocationUpdates()
             } else {
                 showLocationPermissionMessage()
             }
@@ -50,35 +51,46 @@ class MainActivity : BaseActivity(), OnMapReadyCallback {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        requestLocationPermission.launch(Unit)
+
         val mapFragment = supportFragmentManager
             .findFragmentById(R.id.map) as SupportMapFragment
         mapFragment.getMapAsync(this)
 
         registerObserver()
         setOnClickListener()
-
-        requestLocationPermission.launch(Unit)
-        fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
     }
 
     override fun onMapReady(googleMap: GoogleMap) {
+        if (viewModel.latitude == 0.0 && viewModel.longitude == 0.0) {
+            googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(LatLng(36.0, 138.0), 3.6f))
+        }
         googleMap.setMapStyle(MapStyleOptions.loadRawResourceStyle(this, R.raw.map_style_json))
         googleMap.uiSettings.isZoomControlsEnabled = true
-        googleMap.isMyLocationEnabled = true
         viewModel.googleMap = googleMap
-        setMapCircle(spinner.selectedItemPosition)
     }
 
-    private fun getLastLocation() {
-        fusedLocationClient.lastLocation.addOnCompleteListener {
-            val location = it.result
-            if (it.isSuccessful && location != null) {
+    @SuppressLint("MissingPermission")
+    private fun startLocationUpdates() {
+        val locationRequest =
+            LocationRequest.create().setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY)
+                .setInterval(10 * 1000)
+        val locationCallback = object : LocationCallback() {
+
+            override fun onLocationResult(locationResult: LocationResult?) {
+                locationResult ?: return
+                val location = locationResult.lastLocation
+                val isFirstTime = viewModel.latitude == 0.0 && viewModel.longitude == 0.0
                 viewModel.latitude = location.latitude
                 viewModel.longitude = location.longitude
-            } else {
-                showLocationPermissionMessage()
+                setMapCircle(spinner.selectedItemPosition, isFirstTime)
+                if (isFirstTime) {
+                    viewModel.googleMap.isMyLocationEnabled = true
+                }
             }
         }
+        val fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
+        fusedLocationClient.requestLocationUpdates(locationRequest, locationCallback, null)
     }
 
     private fun showLocationPermissionMessage() = showSnackbar(
@@ -120,7 +132,7 @@ class MainActivity : BaseActivity(), OnMapReadyCallback {
                 view: View?,
                 position: Int,
                 id: Long
-            ) = setMapCircle(position)
+            ) = setMapCircle(position, true)
 
             override fun onNothingSelected(parent: AdapterView<*>?) {}
         }
@@ -146,7 +158,7 @@ class MainActivity : BaseActivity(), OnMapReadyCallback {
         }
     }
 
-    private fun setMapCircle(spinnerSelectedItemId: Int) {
+    private fun setMapCircle(spinnerSelectedItemId: Int, isControlCameraUpdate: Boolean = false) {
         if (viewModel.latitude == 0.0 && viewModel.longitude == 0.0) {
             return
         }
@@ -158,19 +170,19 @@ class MainActivity : BaseActivity(), OnMapReadyCallback {
         } else if (rangeString.endsWith("m")) {
             range = rangeString.replace("m", "").toDouble()
         }
-        val bounds = latLng.toBounds(range)
 
         viewModel.googleMap.clear()
         viewModel.googleMap.addCircle(
-            CircleOptions().center(latLng).radius(range).strokeColor(
-                ContextCompat.getColor(
-                    spinner.context,
-                    R.color.mapCircleColor
-                )
-            )
+            CircleOptions().center(latLng).radius(range)
+                .strokeColor(ContextCompat.getColor(spinner.context, R.color.mapCircleColor))
                 .fillColor(ContextCompat.getColor(spinner.context, R.color.mapCircleColor))
         )
-        viewModel.googleMap.animateCamera(CameraUpdateFactory.newLatLngBounds(bounds, 32))
+
+        if (isControlCameraUpdate) {
+            viewModel.googleMap.animateCamera(
+                CameraUpdateFactory.newLatLngBounds(latLng.toBounds(range), 32)
+            )
+        }
     }
 
     private fun setSearchCategory() {
