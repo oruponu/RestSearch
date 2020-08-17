@@ -19,7 +19,10 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="16dp"
+            android:paddingStart="16dp"
+            android:paddingTop="16dp"
+            android:paddingEnd="16dp"
+            android:paddingBottom="32dp"
             tools:context=".ui.view.DetailActivity">
 
             <TextView
@@ -37,6 +40,7 @@
                 android:id="@+id/nameKanaTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
                 android:text="@{rest.nameKana}"
                 android:textColor="@color/textColorSecondary"
                 android:textSize="14sp"
@@ -58,7 +62,7 @@
                 android:id="@+id/SeparatorView1"
                 android:layout_width="wrap_content"
                 android:layout_height="1dp"
-                android:layout_marginTop="12dp"
+                android:layout_marginTop="24dp"
                 android:background="@android:color/darker_gray"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/categoryFlexboxLayout" />
@@ -67,7 +71,7 @@
                 android:id="@+id/addressImageView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="12dp"
+                android:layout_marginTop="24dp"
                 android:background="@drawable/ic_address_24"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/SeparatorView1" />
@@ -93,6 +97,7 @@
                 android:id="@+id/telImageView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
                 android:background="@drawable/ic_tel_24"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/addressTextView" />
@@ -114,6 +119,7 @@
                 android:id="@+id/opentimeImageView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
                 android:background="@drawable/ic_opentime_24"
                 android:visibility="@{rest.opentime.isEmpty() ? View.GONE : View.VISIBLE}"
                 app:layout_constraintStart_toStartOf="parent"
@@ -137,6 +143,7 @@
                 android:id="@+id/circleImageView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
                 android:background="@drawable/ic_circle_24"
                 android:visibility="@{rest.holiday.isEmpty() ? View.GONE : View.VISIBLE}"
                 app:layout_constraintStart_toStartOf="parent"
@@ -170,7 +177,7 @@
                 android:id="@+id/shopImageView1"
                 android:layout_width="150dp"
                 android:layout_height="150dp"
-                android:layout_marginTop="12dp"
+                android:layout_marginTop="24dp"
                 app:detailImageSource="@{rest.imageUrl.shopImage1}"
                 app:layout_constraintEnd_toStartOf="@+id/shopImageView2"
                 app:layout_constraintStart_toStartOf="parent"
@@ -191,7 +198,7 @@
                 android:id="@+id/SeparatorView2"
                 android:layout_width="wrap_content"
                 android:layout_height="1dp"
-                android:layout_marginTop="12dp"
+                android:layout_marginTop="24dp"
                 android:background="@android:color/darker_gray"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/shopImageView1" />
@@ -200,7 +207,7 @@
                 android:id="@+id/prShortTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="12dp"
+                android:layout_marginTop="24dp"
                 android:text="@{rest.pr.prShort}"
                 android:textSize="18sp"
                 android:visibility="@{rest.pr.prShort.isEmpty() ? View.GONE : View.VISIBLE}"
@@ -212,7 +219,7 @@
                 android:id="@+id/prLongTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
+                android:layout_marginTop="12dp"
                 android:text="@{rest.pr.prLong}"
                 android:textColor="@color/textColorSecondary"
                 android:textSize="14sp"
@@ -224,7 +231,7 @@
             <com.google.android.material.button.MaterialButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="12dp"
+                android:layout_marginTop="32dp"
                 android:text="@string/start_navigation"
                 app:latitude="@{rest.latitude}"
                 app:layout_constraintEnd_toEndOf="parent"
