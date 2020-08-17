@@ -47,6 +47,8 @@ class MainActivity : BaseActivity(), OnMapReadyCallback {
             }
         }
 
+    var isMyLocationEnabled = false
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -80,12 +82,12 @@ class MainActivity : BaseActivity(), OnMapReadyCallback {
             override fun onLocationResult(locationResult: LocationResult?) {
                 locationResult ?: return
                 val location = locationResult.lastLocation
-                val isFirstTime = viewModel.latitude == 0.0 && viewModel.longitude == 0.0
                 viewModel.latitude = location.latitude
                 viewModel.longitude = location.longitude
-                setMapCircle(spinner.selectedItemPosition, isFirstTime)
-                if (isFirstTime) {
+                setMapCircle(spinner.selectedItemPosition, !isMyLocationEnabled)
+                if (!isMyLocationEnabled) {
                     viewModel.googleMap.isMyLocationEnabled = true
+                    isMyLocationEnabled = true
                 }
             }
         }
