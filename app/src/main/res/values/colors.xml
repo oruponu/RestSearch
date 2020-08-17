@@ -13,6 +13,7 @@
     <color name="chipTextCheckedColor">#2B624B</color>
     <color name="tabLayoutBackground">#F7F7F7</color>
     <color name="tabSelectedTextColor">#E8EAED</color>
+    <color name="mapCircleColor">#4000AAFF</color>
 
     <bool name="windowLightStatusBar">true</bool>
 </resources>

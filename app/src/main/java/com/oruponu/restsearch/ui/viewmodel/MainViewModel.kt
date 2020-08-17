@@ -14,10 +14,10 @@ class MainViewModel : ViewModel() {
 
     val stringId = MutableLiveData<Event<Int>>()
 
-    val selectedCategories = MutableLiveData<HashMap<String, String>>()
-
     var latitude = .0
     var longitude = .0
+
+    var selectedCategories = HashMap<String, String>()
 
     private val repository = RestSearchRepository.search()
 
@@ -60,12 +60,5 @@ class MainViewModel : ViewModel() {
         }
     }
 
-    fun getCategoriesCode(): String {
-        var categoriesCode = ""
-        val selectedCategory = selectedCategories.value
-        if (selectedCategory != null && selectedCategory.isNotEmpty()) {
-            categoriesCode = selectedCategory.map { it.key }.joinToString(",")
-        }
-        return categoriesCode
-    }
+    fun getCategoriesCode(): String = selectedCategories.map { it.key }.joinToString(",")
 }
